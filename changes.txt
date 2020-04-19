@@ -1,0 +1,4 @@
+1) Change the max detection size "max_detections" from 300 to 400
+2) Change the NMS threshold "nms_threshold" from 0.50 to 0.30 
+3) Change the AnchorParameters.default "sizes" from [32, 64, 128, 256, 512] to [16, 32, 64, 128, 256]
+
