@@ -23,9 +23,44 @@ by Tsung-Yi Lin, Priya Goyal, Ross Girshick, Kaiming He and Piotr Dollár.
     
     ```
     #labels = c * backend.ones((keras.backend.shape(scores)[0],), dtype='int64')
-    labels = c * backend.ones((keras.backend.shape(scores)[0],), dtype='int32')
+    labels = c * backend.ones((keras.backend.shape(scores)[0],), dtype='int32')  
     ```
 
+## Docker
+
+1) Pull Tensorflow GPU docker
+
+```
+    docker pull tensorflow/tensorflow:1.12.0-gpu-py3
+```
+
+2) Run docker 
+
+```
+    docker run --gpus all -it -v /data:/data tensorflow/tensorflow:1.12.0-gpu-py3 bash
+```
+
+3) Install OpenCV
+
+```
+    pip install opencv-python==3.4.5.20
+    pip install rawpy
+```
+
+4) Install some dependency
+
+```
+    apt install -y libsm6 libxext6
+    apt install libxrender1
+```
+
+5) Docker commit
+
+Use `docker ps` to the corresponding `CONTAINER_ID`.
+
+```
+docker commit CONTAINER_ID tensorflow/tensorflow:1.12.0-gpu
+```
 
 ## Installation
 
