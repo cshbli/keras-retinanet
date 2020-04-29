@@ -38,6 +38,8 @@ by Tsung-Yi Lin, Priya Goyal, Ross Girshick, Kaiming He and Piotr Dollár.
 
 ```
     docker run --gpus all -it -v /data:/data tensorflow/tensorflow:1.12.0-gpu-py3 bash
+
+    docker run --gpus all -it -v /data:/data tensorflow/tensorflow:1.12.0-gpu-1 bash
 ```
 
 3) Install OpenCV
@@ -52,9 +54,40 @@ by Tsung-Yi Lin, Priya Goyal, Ross Girshick, Kaiming He and Piotr Dollár.
 ```
     apt install -y libsm6 libxext6
     apt install libxrender1
+    apt install git wget
 ```
 
-5) Docker commit
+5) Get Tensorflow source
+``` cd /
+    git clone https://github.com/tensorflow/tensorflow.git
+    cd /tensorflow
+    TF_BUILD_VERSION=v1.12.0
+    git checkout ${TF_BUILD_VERSION}
+```
+
+6) Build Graph Transform and Summarize Graph Tool
+
+* download bazel
+
+    ```
+    cd /
+    BAZEL_VERSION=0.15.0
+    wget https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-installer-linux-x86_64.sh
+    bash bazel-${BAZEL_VERSION}-installer-linux-x86_64.sh
+    ```
+
+* Build Graph Transform Tool
+    ```
+    cd /tensorflow
+    bazel build tensorflow/tools/graph_transforms:transform_graph
+    ```
+
+* Build Summarize Graph Tool
+    ```
+    cd /tensorflow
+    bazel build tensorflow/tools/graph_transforms:summarize_graph
+    ```
+7) Docker commit
 
 Use `docker ps` to the corresponding `CONTAINER_ID`.
 
