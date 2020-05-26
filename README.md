@@ -39,7 +39,7 @@ by Tsung-Yi Lin, Priya Goyal, Ross Girshick, Kaiming He and Piotr Dollár.
 ```
     docker run --gpus all -it -v /data:/data tensorflow/tensorflow:1.12.0-gpu-py3 bash
 
-    docker run --gpus all -it -v /data:/data tensorflow/tensorflow:1.12.0-gpu-1 bash
+    docker run --gpus all -it -v /data:/data tensorflow/tensorflow:1.12.0-gpu bash
 ```
 
 3) Install OpenCV
@@ -93,6 +93,12 @@ Use `docker ps` to the corresponding `CONTAINER_ID`.
 
 ```
 docker commit CONTAINER_ID tensorflow/tensorflow:1.12.0-gpu
+```
+
+8) Make sure the keras version is 2.2.4
+
+```
+pip install keras==2.2.4
 ```
 
 ## Installation
