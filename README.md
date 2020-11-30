@@ -28,6 +28,23 @@ by Tsung-Yi Lin, Priya Goyal, Ross Girshick, Kaiming He and Piotr Dollár.
 
 ## Docker
 
+### Build docker from docker file
+```
+    docker build -f Dockerfile -t retinanet .
+```
+
+### Start container with mapped volumes
+```
+    docker run --gpus all -it -v /data/datasets:/data/datasets -v ~/Projects/:/Projects retinanet bash
+```
+
+If the datasets are on external Samsung SSD drive
+```
+    docker run -it -v /media/hongbing/Samsung_T5/datasets:/data/datasets -v ~/Projects/:/Projects retinanet bash
+```
+
+### Alternative: Build docker step by step (not recommended)
+
 1) Pull Tensorflow GPU docker
 
 ```
